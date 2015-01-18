@@ -18,8 +18,8 @@ import com.aozhi.pack.entity.Task;
 
 public interface RecordDao extends PagingAndSortingRepository<Record, Long>, JpaSpecificationExecutor<Record> {
 
-	Packet findByPacketName(String packetName);
+	
 
-	@Query("select * from Record record where record.channel.id=?1")
+	@Query("select id from Record record where record.channel.id=?1")
 	Page<Record> findByChannelId(Long id, Pageable pageRequest);
 }
