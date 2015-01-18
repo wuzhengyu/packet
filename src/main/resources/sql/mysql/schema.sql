@@ -23,6 +23,7 @@ drop table ss_channel;
 create table ss_channel (
 	id bigint auto_increment,
 	channel_name varchar(64) not null unique,
+	user_id bigint not null,
 description varchar(255),
  	insert_date timestamp not null default 0,
 	primary key (id)
@@ -40,7 +41,8 @@ create table ss_packet (
 drop table ss_record;
 create table ss_record (
 	id bigint auto_increment,
-	package_id bigint not null,
+	user_id bigint not null,
+	packet_id bigint not null,
   channel_id bigint not null,
 	record_date date not null,
   counts int default 0,

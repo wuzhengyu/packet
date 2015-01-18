@@ -18,28 +18,44 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "ss_channel")
-public class Channel extends IdEntity {
+@Table(name = "ss_record")
+public class Record extends IdEntity {
 	private String channelName;
 	private Date insertDate;
+	private Date updateDate;
+	private Date recordDate;
+	private Channel channel;
+	private Packet packet;
 	private String description;
-	private User user;
 
+	private int counts;
+	private int status;
 
-	public Channel() {
+	public Record() {
 	}
 
-	public Channel(Long id) {
+	public Record(Long id) {
 		this.id = id;
 	}
+
 	@ManyToOne
-	@JoinColumn(name = "user_id")
-	public User getUser() {
-		return user;
+	@JoinColumn(name = "channel_id")
+	public Channel getChannel() {
+		return channel;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setChannel(Channel channel) {
+		this.channel = channel;
+	}
+
+	@ManyToOne
+	@JoinColumn(name = "packet_id")
+	public Packet getPacket() {
+		return packet;
+	}
+
+	public void setPacket(Packet packet) {
+		this.packet = packet;
 	}
 
 	@NotBlank
@@ -67,6 +83,38 @@ public class Channel extends IdEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public Date getRecordDate() {
+		return recordDate;
+	}
+
+	public void setRecordDate(Date recordDate) {
+		this.recordDate = recordDate;
+	}
+
+	public int getCounts() {
+		return counts;
+	}
+
+	public void setCounts(int counts) {
+		this.counts = counts;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	@Override
